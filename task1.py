@@ -20,6 +20,7 @@ getCourses(list)- Receives a list of courses and stores that in the class proper
 getGrades(list) - Receives a list of grades and stores that in the class property
 constructor     - should require the student name, studentNumber and grade (in that order)
 """
+
 class student:
 
     # properties should be listed first
@@ -44,7 +45,31 @@ class student:
         self.grade = grade
 
     def __del__(self):
-        x = print("Thank you for viewing the profile of " + self.name)
+        pass
+
+    def average(self):
+        av = 0
+        for x in range(len(self.grades)):
+            av += self.grades[x]
+        return round(av / len(self.grades), 1)
+
+    def getHonorRoll(self):
+        lis = self.grades
+        lis.sort(reverse = True)
+        hr = 0
+        for x in range(5):
+            hr += lis[x]
+        ans = hr / 5
+        if ans >= 86:
+            return True
+        else:
+            return False
+    
+    def showCourses(self):
+        print(self.courses)
+
+    def showGrade(self, x):
+        print(self.courses[x] + " " + self.grades[x])
 
 
 def main():
@@ -53,11 +78,10 @@ def main():
 
     st1 = student("Anita Bath","91334",11)
     st1.getCourses( ["English","Math","PE","Computers","History","Biology","Japanese"] )
-    st1.getGrades([91, 94, 87, 99, 82, 100, 73])
+    st1.getGrades( 91, 94, 87, 99, 82, 100, 73)
 
     st2 = student("Joe Lunchbox","12346", 11)
     st1.getCourses( ["English","Math","Physics","Computers","Geography","Chemistry","French"] )
-    st1.getGrades( [71, 98, 93, 95, 68, 81, 71])
-
+    st1.getGrades( 71, 98, 93, 95, 68, 81, 71)
 
 main()
